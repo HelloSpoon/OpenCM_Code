@@ -25,10 +25,18 @@ char Data_Received = 0;
 
 HelloSpoon robot;
 
+void LEDS_on(){
+ for(int led = 1; led = 4; led++){
+  robot.LED(led,"blue");
+  delay(30);
+ }
+}
+
 void setup(){
  robot.begin(); //Starts comm with HelloSpoon robot actuators and board.
  Serial2.begin(57600); //Starts Bluetooth comm.
  delay(500); 
+ LEDS_on();
 }
 
 void loop(){
