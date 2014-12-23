@@ -42,17 +42,6 @@ void Dance(){
 }
 
 /*
-Turn ON blue LED tone, 
-just as a reminder that HelloSpoon robot is ready to be used.
-*/
-void LEDS_on(){
- for(int led = 1; led < 5; led++){
-  robot.LED(led,"blue");
-  delay(10);
- }
-}
-
-/*
 LED notification,
 activated when a word is recognized by HelloSpoon app.
 */
@@ -86,7 +75,7 @@ void setup(){
  Serial2.begin(57600); //Starts Bluetooth comm.
  delay(500);
  
- LEDS_on(); //Turns on LEDs.
+ robot.activateTrunk();
  motionsVelocity(); // Sets velocity for motions.
  delay(500);
  
