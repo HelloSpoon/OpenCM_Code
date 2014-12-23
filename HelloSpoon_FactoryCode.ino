@@ -21,12 +21,21 @@ ID 5: XL-320 2.0 -------- spoon
 
 #include <HelloSpoon.h>
 
+char Data_Received = 0;
+
 HelloSpoon robot;
 
 void setup(){
-
+ robot.begin(); //Starts comm with HelloSpoon robot actuators and board.
+ Serial2.begin(57600); //Starts Bluetooth comm.
+ delay(500); 
 }
 
 void loop(){
-
+ if(Serial2.available()){
+  Data_Received = Serial2.read();
+  if(Data_Received!=0){
+   
+  }
+ }
 }
