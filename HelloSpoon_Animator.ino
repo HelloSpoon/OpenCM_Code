@@ -12,7 +12,6 @@ int num_time = 0;
 int num_vel = 50;
 
 int times = 0;
-int value = 1; 
 
 int actual_Pos[60][8];
 int fin_pos[60][8] = {};
