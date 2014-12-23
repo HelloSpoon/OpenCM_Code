@@ -26,9 +26,9 @@ char Data_Received = 0;
 HelloSpoon robot;
 
 void LEDS_on(){
- for(int led = 1; led = 4; led++){
+ for(int led = 1; led < 5; led++){
   robot.LED(led,"blue");
-  delay(30);
+  delay(10);
  }
 }
 
