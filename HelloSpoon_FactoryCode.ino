@@ -22,7 +22,7 @@ ID 5: XL-320 2.0 -------- spoon
 
 #include <HelloSpoon.h>
 
-char data = 0;
+char data[2] = 0;
 
 HelloSpoon robot;
 
