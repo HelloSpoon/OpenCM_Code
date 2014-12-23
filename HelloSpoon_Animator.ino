@@ -3,7 +3,7 @@ Code used to animate HelloSpoon robot
 with HelloSpoon Animator Android app.
 */
 
-#include <"HelloSpoon.h">
+#include <HelloSpoon.h>
 
 char data = 0;
 
