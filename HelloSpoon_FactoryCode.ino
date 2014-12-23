@@ -30,7 +30,7 @@ HelloSpoon robot;
 Randomly generated motion with random LED routine.
 */
 void Dance(){
- int rand_pos[4] = {random(0,0), random(0,0), random(0,0), random(0,0)};
+ int rand_pos[4] = {random(250,550), random(250,650), random(250,750), random(150,800)};
  char rand_led[4] = {'p', 'w', 'c', 'm'};
  
  for(int i = 1; i < 5; i++){
@@ -84,9 +84,11 @@ void setup(){
  
  robot.begin(); //Starts comm with HelloSpoon robot actuators and board.
  Serial2.begin(57600); //Starts Bluetooth comm.
- delay(500); 
+ delay(500);
+ 
  LEDS_on(); //Turns on LEDs.
  motionsVelocity(); // Sets velocity for motions.
+ delay(500);
  
 }
 
