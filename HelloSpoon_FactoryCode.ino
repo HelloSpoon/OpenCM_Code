@@ -1,7 +1,7 @@
 /*
 HelloSpoon Factory Reset Code.
 
-This is code is loaded on the OpenCM-9.04 provided with HelloSpoon robot.
+This code is loaded on the OpenCM-9.04 provided with HelloSpoon robot.
 
 If for any reason you download a different code 
 and want to return your HelloSpoon to its factory state
