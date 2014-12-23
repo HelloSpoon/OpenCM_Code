@@ -21,7 +21,7 @@ ID 5: XL-320 2.0 -------- spoon
 
 #include <HelloSpoon.h>
 
-char Data_Received = 0;
+char data = 0;
 
 HelloSpoon robot;
 
@@ -59,8 +59,8 @@ void setup(){
 
 void loop(){
  if(Serial2.available()){
-  Data_Received = Serial2.read();
-  if(Data_Received!=0){
+  data = Serial2.read();
+  if(data!=0){
    
   }
  }
