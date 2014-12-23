@@ -25,10 +25,28 @@ char Data_Received = 0;
 
 HelloSpoon robot;
 
+/*
+Turn ON blue LED tone, 
+just as a reminder that HelloSpoon robot is ready to be used.
+*/
 void LEDS_on(){
  for(int led = 1; led < 5; led++){
   robot.LED(led,"blue");
   delay(10);
+ }
+}
+
+/*
+LED notification,
+activated when a word is recognized by HelloSpoon app.
+*/
+void LED_notification(){
+ for(int i = 1; i < 5; i++){
+  robot.LED(i,"green");
+ }
+ delay(500);
+ for(int i = 1; i < 5; i++){
+  robot.LED(i,"blue");
  }
 }
 
