@@ -1,10 +1,11 @@
 OpenCM_Code
 ===========
 
-OpenCM-9.04 board code for HelloSpoon robot
+Repository used to save the main embedded codes used in the development of HelloSpoon robot.
 
-This is the actual code version for HelloSpoon robot.
+It contains:
+HelloSpoon1_0_protocol.ino - Code used with prototype version of HelloSpoon robot.
 
-This is not the final version of the code.
+HelloSpoon_Animator.ino - Code used to create motions for HelloSpoon robot using an Android phone.
 
-There's a lot of unused code on this version that will be removed when the final version is ready.
+HelloSpoon_FactoryCode.ino - Code used with final version of HelloSpoon robot, implementing HelloSpoon.h library.
