@@ -31,10 +31,10 @@ Randomly generated motion with random LED routine.
 */
 void Dance(){
  int rand_pos[4] = {random(0,0), random(0,0), random(0,0), random(0,0)};
- //char rand_led[4] = {"pink", "white", "cyan", "magenta"};
+ char rand_led[4] = {'p', 'w', 'c', 'm'};
  
  for(int i = 1; i < 5; i++){
-  //robot.LED(i, rand_led[i-1]);
+  robot.LED(i, rand_led[i-1]);
   robot.moveJoint(i, rand_pos[i-1]); 
   delay(10);
  }
@@ -92,9 +92,9 @@ void setup(){
 
 void loop(){
  if(Serial2.available()){
-  data = Serial2.read();
-  if(data!=0){
+  //data[] = Serial2.read();
+  //if(data[0]!=0){
    
-  }
+  //}
  }
 }
