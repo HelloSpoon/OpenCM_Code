@@ -51,7 +51,7 @@ void loop(){
       
       else if(data == 'd'){
         robot.torqueON(num_mot);
-        robot.LED(num_mot, "green");
+        robot.LED(num_mot, "blue");
       }
       
       else if(data == 'e'){
