@@ -210,8 +210,11 @@ void loop(){
    data = Serial2.read();
    if(data!=0){
     if(data == 'w' && isFriend){
-     Dance();
-     delay(350);
+     for(int i = 0; i < 10; i++){
+      Dance();
+      delay(350);
+     }
+     ON_Position();
     }
     else if(data == 'c' && isFriend){
      Feeding_Init();
