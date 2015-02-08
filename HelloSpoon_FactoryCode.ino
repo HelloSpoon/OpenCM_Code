@@ -22,9 +22,22 @@ ID 5: XL-320 2.0 -------- spoon
 
 #include <HelloSpoon.h>
 
-char data[2] = 0;
+char data = 0;
+boolean load_reader = true;
+boolean wall = false;
+boolean isFriend = true;
 
 HelloSpoon robot;
+
+/*
+Reading load on spoon... needs modification!!
+*/
+
+void readLoad(){
+ delay(1000);
+ Serial2.write(1);
+ old_ON_Position();
+}
 
 /*
 Randomly generated motion with random LED routine.
@@ -36,7 +49,7 @@ void Dance(){
  for(int i = 1; i < 5; i++){
   robot.LED(i, rand_led[i-1]);
   robot.moveJoint(i, rand_pos[i-1]); 
-  delay(10);
+  delay(50);
  }
  
 }
@@ -48,12 +61,12 @@ activated when a word is recognized by HelloSpoon app.
 void LED_notification(){
  for(int i = 1; i < 5; i++){
   robot.LED(i,"green");
-  delay(10);
+  delay(50);
  }
  delay(500);
  for(int i = 1; i < 5; i++){
   robot.LED(i,"blue");
-  delay(10);
+  delay(50);
  }
 }
 
@@ -69,6 +82,111 @@ void motionsVelocity(){
  delay(1000);
 }
 
+void old_ON_Position(){
+ delay(500);
+ robot.moveJoint(1, 512);
+ robot.moveJoint(2, 312);
+ robot.moveJoint(3, 750);
+ robot.moveJoint(4, 402);
+ delay(1500);
+ ON_Position();
+}
+
+void ON_Position(){
+ delay(500);
+ robot.moveJoint(1, 512);
+ robot.moveJoint(2, 612);
+ robot.moveJoint(3, 750);
+ robot.moveJoint(4, 202);
+ delay(1500);
+}
+
+void Feeding_Init(){
+ motionsVelocity();
+ load_reader = true;
+ 
+ robot.moveJoint(1, 679);
+ robot.moveJoint(2, 347);
+ robot.moveJoint(3, 810);
+ robot.moveJoint(4, 295);
+ delay(1000);
+ robot.moveJoint(2, 559);
+ robot.moveJoint(3, 810);
+ robot.moveJoint(4, 295);
+ delay(1000);
+ robot.moveJoint(2, 562);
+ robot.moveJoint(3, 616);
+ robot.moveJoint(4, 454);
+ delay(1000);
+ robot.moveJoint(2, 649);
+ robot.moveJoint(3, 370);
+ robot.moveJoint(4, 562);
+ delay(1000);
+ robot.moveJoint(2, 749);
+ robot.moveJoint(3, 270);
+ robot.moveJoint(4, 585);
+ delay(1000);
+ 
+ Scoop_Motion_Bowl();
+ 
+}
+
+void Scoop_Motion_Bowl(){
+ robot.setJointVelocity(1, 100);
+ robot.setJointVelocity(2, 100);
+ robot.setJointVelocity(3, 100);
+ robot.setJointVelocity(4, 100);
+ 
+ robot.moveJoint(2, 807);
+ robot.moveJoint(3, 341);
+ robot.moveJoint(4, 480);
+ delay(500);
+ robot.moveJoint(2, 821);
+ robot.moveJoint(3, 227);
+ robot.moveJoint(4, 430);
+ delay(500);
+ 
+ Scoop_Motion_Mouth_Modif();
+}
+
+void Scoop_Motion_Mouth_Modif(){
+ 
+ robot.moveJoint(2, 473);
+ robot.moveJoint(3, 523);
+ robot.moveJoint(4, 400);
+ delay(1000);
+ robot.moveJoint(2, 453);
+ robot.moveJoint(3, 540);
+ robot.moveJoint(4, 450);
+ delay(1000);
+ robot.moveJoint(2, 453);
+ robot.moveJoint(3, 540);
+ robot.moveJoint(4, 490);
+ delay(1000);
+ 
+ Neutral();
+ 
+}
+
+void Neutral(){
+ robot.moveJoint(1, 512);
+ delay(3500);
+ readLoad();
+}
+
+void Spoon_Out_Mouth(){
+ robot.setJointVelocity(1, 50);
+ robot.setJointVelocity(2, 50);
+ robot.setJointVelocity(3, 50);
+ robot.setJointVelocity(4, 50);
+ 
+ robot.moveJoint(2, 373);
+ robot.moveJoint(3, 770);
+ robot.moveJoint(4, 302);
+ delay(500);
+ 
+}
+
 void setup(){
  
  robot.begin(); //Starts comm with HelloSpoon robot actuators and board.
@@ -76,16 +194,30 @@ void setup(){
  delay(500);
  
  robot.activateTrunk();
- motionsVelocity(); // Sets velocity for motions.
  delay(500);
+ 
+ ON_Position();
  
 }
 
 void loop(){
- if(Serial2.available()){
-  //data[] = Serial2.read();
-  //if(data[0]!=0){
-   
-  //}
+ 
+ if(wall){
+  
+ }
+ else{
+  if(Serial2.available()){
+   data = Serial2.read();
+   if(data!=0){
+    if(data == 'w' && isFriend){
+     Dance();
+     delay(350);
+    }
+    else if(data == 'c' && isFriend){
+     Feeding_Init();
+    }
+    
+   }
+  }
  }
 }
